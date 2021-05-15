@@ -1,6 +1,6 @@
 using System;
 
-namespace aspnet
+namespace Domain.Models
 {
     public class WeatherForecast
     {

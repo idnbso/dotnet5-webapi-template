@@ -1,6 +1,5 @@
 using System.Text;
-using Application.Infrastructure.Auth;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Infrastructure.Auth;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using AutoMapper;
+using Domain.Mapping;
 
 namespace aspnet
 {
@@ -25,6 +26,12 @@ namespace aspnet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<AutoMapperProfile>();
+            });
+            services.AddSingleton<AutoMapper.IConfigurationProvider>(config);
+            services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<AutoMapper.IConfigurationProvider>(), sp.GetService));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

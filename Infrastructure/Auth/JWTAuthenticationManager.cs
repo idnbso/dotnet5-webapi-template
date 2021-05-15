@@ -7,7 +7,7 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Application.Infrastructure.Auth
+namespace Infrastructure.Auth
 {
     public class JWTAuthenticationManager : IJWTAuthenticationManager
     {

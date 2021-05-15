@@ -1,4 +1,4 @@
-namespace Application.Infrastructure.Auth
+namespace Infrastructure.Auth
 {
     public interface IJWTAuthenticationManager
     {

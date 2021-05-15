@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnet", "Application\aspne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{BECD2905-7DA4-4FB5-986F-78CC47E36373}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{B1E78315-07AF-41DD-9517-33DF6192C05D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{BECD2905-7DA4-4FB5-986F-78CC47E36373}.Release|x64.Build.0 = Release|Any CPU
 		{BECD2905-7DA4-4FB5-986F-78CC47E36373}.Release|x86.ActiveCfg = Release|Any CPU
 		{BECD2905-7DA4-4FB5-986F-78CC47E36373}.Release|x86.Build.0 = Release|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Debug|x64.Build.0 = Debug|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Debug|x86.Build.0 = Debug|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Release|x64.ActiveCfg = Release|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Release|x64.Build.0 = Release|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Release|x86.ActiveCfg = Release|Any CPU
+		{B1E78315-07AF-41DD-9517-33DF6192C05D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
