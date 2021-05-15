@@ -77,6 +77,8 @@ namespace aspnet
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "aspnet v1"));
             }
 
+            app.UseExceptionHandler("/errors");
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
