@@ -1,0 +1,12 @@
+{
+    "msbuild": {
+        "MSBuildSdksPath": "c:\\Users\\idanb\\.vscode\\extensions\\ms-dotnettools.csharp-1.23.11\\.omnisharp\\1.37.8\\.msbuild\\Current\\Bin",
+        "MSBuildOverride": {
+            "MSBuildPath": "c:\\Users\\idanb\\.vscode\\extensions\\ms-dotnettools.csharp-1.23.11\\.omnisharp\\1.37.8\\.msbuild\\Current\\Bin",
+            "PropertyOverrides": {
+                "MSBuildToolsPath": "c:\\Users\\idanb\\.vscode\\extensions\\ms-dotnettools.csharp-1.23.11\\.omnisharp\\1.37.8\\.msbuild\\Current\\Bin",
+                "MSBuildExtensionsPath": "c:\\Users\\idanb\\.vscode\\extensions\\ms-dotnettools.csharp-1.23.11\\.omnisharp\\1.37.8\\.msbuild"
+            }
+        }
+    }
+}
