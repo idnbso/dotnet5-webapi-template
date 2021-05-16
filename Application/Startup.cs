@@ -43,11 +43,12 @@ namespace aspnet
 
             ConfigureAuth(services);
 
+            var origins = Configuration.GetSection("CorsSettings:AllowedOrigins").Get<string[]>();
             services.AddCors(options =>
             {
                 options.AddPolicy(
                 "CorsPolicy",
-                builder => builder.WithOrigins("http://localhost:4200")
+                builder => builder.WithOrigins(origins)
                                   .AllowAnyMethod()
                                   .AllowAnyHeader()
                                   .AllowCredentials());
