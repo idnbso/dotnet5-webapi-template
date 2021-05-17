@@ -14,6 +14,7 @@ using Domain.Mapping;
 using Serilog;
 using System;
 using Application.Configuration;
+using Infrastructure.Data.Access;
 
 namespace aspnet
 {
@@ -28,6 +29,8 @@ namespace aspnet
 
             _tokenKey = configuration.GetValue<string>("TokenKey");
             configuration.GetSection("CorsSettings:AllowedOrigins").Bind(_allowedOrigins);
+
+            DataAccessConstants.DefaultConnectionString = configuration.GetConnectionString("DefaultConnection");
 
             Log.Information($"Starting up in Environment: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}...");
         }
