@@ -1,10 +1,12 @@
 # Useful dotnet CLI Commands
-* Publish in Debug mode:
-* * dotnet publish -c Debug -r win-x64 /p:EnvironmentName=Development
+* Publish in Debug Mode
+    `dotnet publish -c Debug -r win-x64 /p:EnvironmentName=Development`
 
-* Publish in Release mode:
-* * dotnet publish -c Release -r win-x64 /p:EnvironmentName=Production
+* Publish in Release Mode
+    `dotnet publish -c Release -r win-x64 /p:EnvironmentName=Production`
 
+* Add a new NuGet Package
+    `dotnet add package Automapper`
 
 # Useful Links
 * [dotnet cli Cheat Sheet](https://cheatography.com/oba/cheat-sheets/dotnet-cli/)
