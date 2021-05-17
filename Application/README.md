@@ -1,4 +1,9 @@
 # Useful dotnet CLI Commands
+* Publish in Debug mode:
+* * dotnet publish -c Debug -r win-x64 /p:EnvironmentName=Development
+
+* Publish in Release mode:
+* * dotnet publish -c Release -r win-x64 /p:EnvironmentName=Production
 
 
 # Useful Links

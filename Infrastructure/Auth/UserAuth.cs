@@ -1,4 +1,4 @@
-namespace Application
+namespace Infrastructure.Auth
 {
     public class UserAuth
     {

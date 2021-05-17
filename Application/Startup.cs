@@ -11,14 +11,25 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using AutoMapper;
 using Domain.Mapping;
+using Serilog;
+using System;
+using Application.Configuration;
 
 namespace aspnet
 {
     public class Startup
     {
+        private readonly string _tokenKey;
+        private readonly string[] _allowedOrigins;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            _tokenKey = configuration.GetValue<string>("TokenKey");
+            configuration.GetSection("CorsSettings:AllowedOrigins").Bind(_allowedOrigins);
+
+            Log.Information($"Starting up in Environment: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}...");
         }
 
         public IConfiguration Configuration { get; }
@@ -26,12 +37,7 @@ namespace aspnet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<AutoMapperProfile>();
-            });
-            services.AddSingleton<AutoMapper.IConfigurationProvider>(config);
-            services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<AutoMapper.IConfigurationProvider>(), sp.GetService));
+            services.AddAutoMapperConfiguration();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -41,41 +47,8 @@ namespace aspnet
 
             services.AddHttpContextAccessor();
 
-            ConfigureAuth(services);
-
-            var origins = Configuration.GetSection("CorsSettings:AllowedOrigins").Get<string[]>();
-            services.AddCors(options =>
-            {
-                options.AddPolicy(
-                "CorsPolicy",
-                builder => builder.WithOrigins(origins)
-                                  .AllowAnyMethod()
-                                  .AllowAnyHeader()
-                                  .AllowCredentials());
-            });
-        }
-
-        private void ConfigureAuth(IServiceCollection services)
-        {
-            var tokenKey = Configuration.GetValue<string>("TokenKey");
-            var key = Encoding.ASCII.GetBytes(tokenKey);
-
-            services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-            .AddNegotiate()
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-
-            services.AddSingleton<IJWTAuthenticationManager>(x => new JWTAuthenticationManager(tokenKey, x.GetService<IHttpContextAccessor>()));
+            services.AddAuthConfiguration(_tokenKey);
+            services.AddCorsConfiguration(_allowedOrigins);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,9 +62,12 @@ namespace aspnet
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "aspnet v1"));
             }
+            else
+            {
+                app.UseExceptionHandler("/errors");
+            }
 
-            app.UseExceptionHandler("/errors");
-
+            app.UseSerilogRequestLogging();
             app.UseHttpsRedirection();
 
             app.UseRouting();
